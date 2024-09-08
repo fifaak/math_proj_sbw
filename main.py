@@ -1,6 +1,6 @@
 import streamlit as st
 import matplotlib.font_manager as fm
-from utils.question_utils import question, math_question_lst, thai_question_lst, eng_question_lst, society_question_lst, sci_question_lst
+from utils.question_utils import question
 from utils.grade_utils import get_grades
 from utils.chart_utils import radar_chart, plot_grade_comparison, plot_equation
 
@@ -11,80 +11,50 @@ prompt_font = fm.FontProperties(fname=font_path)
 # Sidebar for grade input
 math, thai, society, eng, sci = get_grades()
 
+# Define the questions
+math_question_lst = ["คุณชอบที่จะใช้เวลาว่างในการหาวิธีแก้ปัญหาหรือเล่นเกมที่ต้องใช้การคิดวิเคราะห์",
+                     "คุณรู้สึกสบายใจเมื่อต้องเผชิญกับปัญหาหรือสถานการณ์ที่ต้องใช้ตรรกะในการแก้ไข",
+                     "คุณมักจะหาโอกาสพัฒนาทักษะการวิเคราะห์ข้อมูลในชีวิตประจำวัน",
+                     "คุณมักจะตั้งคำถามกับข้อมูลที่ซับซ้อนเพื่อหาคำตอบที่ดีที่สุด",
+                     "คุณรู้สึกตื่นเต้นเมื่อพบกับความท้าทายทางความคิดที่ต้องใช้การคำนวณเพื่อแก้ปัญหา"]
+
+sci_question_lst = ["คุณรู้สึกสนุกเมื่อได้ทดลองหรือค้นพบสิ่งใหม่",
+                    "คุณมักจะตั้งข้อสงสัยเกี่ยวกับปรากฏการณ์ธรรมชาติที่เกิดขึ้นรอบตัวคุณ",
+                    "คุณสนใจที่จะรู้ว่ากระบวนการทำงานของเครื่องจักรหรือเครื่องมือทำงานอย่างไร",
+                    "คุณชอบเรียนรู้ว่าธรรมชาติและสิ่งแวดล้อมรอบตัวคุณมีการเปลี่ยนแปลงอย่างไรบ้าง",
+                    "คุณชอบที่จะตั้งคำถามเกี่ยวกับโลกและจักรวาลเพื่อหาคำตอบด้วยตัวเอง"]
+
+thai_question_lst = ["คุณชอบที่จะเล่าเรื่องราวหรือถ่ายทอดความรู้สึกผ่านการเขียน",
+                     "คุณรู้สึกว่าการอ่านหนังสือหรือบทความช่วยเปิดโลกทัศน์และความคิดของคุณ",
+                     "คุณสนใจที่จะค้นหาความหมายลึกซึ้งของบทกลอนหรือเรื่องราวที่อ่าน",
+                     "คุณรู้สึกว่าการเขียนหรือการสื่อสารช่วยให้คุณแสดงออกความคิดได้ดีขึ้น",
+                     "คุณชอบที่จะฝึกทักษะการสื่อสารเพื่อให้สามารถแสดงออกได้ชัดเจนและเข้าใจง่ายขึ้น"]
+
+society_question_lst = ["คุณมักสนใจข่าวสารเกี่ยวกับการเมืองหรือเหตุการณ์สำคัญในประเทศ",
+                        "คุณมักจะตั้งคำถามเกี่ยวกับการทำงานของระบบการปกครองหรือเศรษฐกิจ",
+                        "คุณสนใจที่จะเรียนรู้เกี่ยวกับวัฒนธรรมและประวัติศาสตร์ของประเทศต่าง",
+                        "คุณรู้สึกว่าการเข้าใจสังคมและวัฒนธรรมช่วยให้คุณมีมุมมองที่กว้างขึ้น",
+                        "คุณคิดว่าการมีความรู้เกี่ยวกับสังคมและโลกสามารถช่วยให้คุณเป็นพลเมืองที่ดียิ่งขึ้น"]
+
+eng_question_lst = ["คุณรู้สึกตื่นเต้นเมื่อต้องสื่อสารกับคนต่างชาติหรือใช้ภาษาต่างประเทศ",
+                    "คุณชอบที่จะฝึกทักษะการฟังและพูดในภาษาต่างประเทศผ่านสื่อต่าง",
+                    "คุณมักจะหาหนังสือหรือสื่อในภาษาต่างประเทศเพื่อพัฒนาทักษะของคุณ",
+                    "คุณเชื่อว่าการเข้าใจภาษาต่างประเทศจะเปิดโอกาสให้คุณได้เรียนรู้สิ่งใหม่",
+                    "คุณรู้สึกมั่นใจเมื่อต้องใช้ภาษาต่างประเทศในการสื่อสารในชีวิตประจำวัน"]
+
 st.title('โปรแกรมแนะแนวการศึกษาต่อในระดับชั้นมัธยมศึกษาตอนปลาย')
 
-# Initialize session_state variables
-if "step" not in st.session_state:
-    st.session_state.step = 1
+with st.form("grades_form"):
+    math_question = question(math_question_lst)
+    thai_question = question(thai_question_lst)
+    society_question = question(society_question_lst)
+    eng_question = question(eng_question_lst)
+    sci_question = question(sci_question_lst)
+    submit_button = st.form_submit_button(label="ประมวลผล")
 
-# Initialize a dictionary to store question results for each subject
-if "questions" not in st.session_state:
-    st.session_state.questions = {
-        "math_question": 0,
-        "thai_question": 0,
-        "society_question": 0,
-        "eng_question": 0,
-        "sci_question": 0
-    }
-
-def next_step():
-    st.session_state.step += 1
-
-def prev_step():
-    st.session_state.step -= 1
-
-# Step 1: Math Questions
-if st.session_state.step == 1:
-    st.header("คำถามเกี่ยวกับคณิตศาสตร์")
-    st.session_state.questions["math_question"] = question(math_question_lst)
-    if st.button("Next"):
-        next_step()
-
-# Step 2: Thai Questions
-elif st.session_state.step == 2:
-    st.header("คำถามเกี่ยวกับภาษาไทย")
-    st.session_state.questions["thai_question"] = question(thai_question_lst)
-    col1, col2 = st.columns(2)
-    if col1.button("Previous"):
-        prev_step()
-    if col2.button("Next"):
-        next_step()
-
-# Step 3: Society Questions
-elif st.session_state.step == 3:
-    st.header("คำถามเกี่ยวกับสังคมศึกษา")
-    st.session_state.questions["society_question"] = question(society_question_lst)
-    col1, col2 = st.columns(2)
-    if col1.button("Previous"):
-        prev_step()
-    if col2.button("Next"):
-        next_step()
-
-# Step 4: English Questions
-elif st.session_state.step == 4:
-    st.header("คำถามเกี่ยวกับภาษาอังกฤษ")
-    st.session_state.questions["eng_question"] = question(eng_question_lst)
-    col1, col2 = st.columns(2)
-    if col1.button("Previous"):
-        prev_step()
-    if col2.button("Next"):
-        next_step()
-
-# Step 5: Science Questions
-elif st.session_state.step == 5:
-    st.header("คำถามเกี่ยวกับวิทยาศาสตร์")
-    st.session_state.questions["sci_question"] = question(sci_question_lst)
-    col1, col2 = st.columns(2)
-    if col1.button("Previous"):
-        prev_step()
-    if col2.button("Submit"):
+if submit_button:
         # Retrieve question sums from session state and perform the calculation
-        questions = st.session_state.questions
-        math_question = questions["math_question"]
-        thai_question = questions["thai_question"]
-        society_question = questions["society_question"]
-        eng_question = questions["eng_question"]
-        sci_question = questions["sci_question"]
+    
 
         math_grade = math * 10
         sci_grade = sci * 10
