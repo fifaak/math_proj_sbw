@@ -46,3 +46,4 @@ typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
 wheel==0.43.0
+watchdog==5.0.2
