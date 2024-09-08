@@ -45,8 +45,10 @@ choices = {
 
 def question(subject):
     sum = 0
+    i =1
     for subquestion in subject:
         # Use radio buttons for each subquestion with emoji options and horizontal layout
-        choice = st.radio(subquestion, list(choices.keys()), horizontal=True)
+        choice = st.radio(str(i)+".) "+subquestion, list(choices.keys()), horizontal=True)
         sum += choices[choice]
+        i+=1
     return sum
