@@ -55,7 +55,7 @@ def plot_equation(x1,x2,x3,x4,x5,y1,y2,y3,y4):
     st.markdown(f"""**y3 ({y3:.2f})** = 
     <span style='color: #FF5733;'>0.29 \\* คณิตศาสตร์ ({x1:.2f})</span> + 
     <span style='color: #33FF57;'>0.14 \\* วิทยาศาสตร์ ({x2:.2f})</span> + 
-    <span style='color: #3357FF;'>0.29 \\* ภาษาไทย ({x3:.2f})</span> + 
+    <span style='color: #3357FF;'>0.14 \\* ภาษาไทย ({x3:.2f})</span> + 
     <span style='color: #FF33A1;'>0.14 \\* สังคมศึกษา ({x4:.2f})</span> + 
     <span style='color: #FFD700;'>0.29 \\* ภาษาอังกฤษ ({x5:.2f})</span>""", unsafe_allow_html=True)
 
@@ -64,5 +64,5 @@ def plot_equation(x1,x2,x3,x4,x5,y1,y2,y3,y4):
     <span style='color: #33FF57;'>0.14 \\* วิทยาศาสตร์ ({x2:.2f})</span> + 
     <span style='color: #3357FF;'>0.29 \\* ภาษาไทย ({x3:.2f})</span> + 
     <span style='color: #FF33A1;'>0.29 \\* สังคมศึกษา ({x4:.2f})</span> + 
-    <span style='color: #FFD700;'>0.29 \\* ภาษาอังกฤษ ({x5:.2f})</span>""", unsafe_allow_html=True)
+    <span style='color: #FFD700;'>0.14 \\* ภาษาอังกฤษ ({x5:.2f})</span>""", unsafe_allow_html=True)
 

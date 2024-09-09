@@ -43,9 +43,9 @@ if submit_button:
         x4 = (society_question * 60 / 25) + society_grade
         x5 = (eng_question * 60 / 25) + eng_grade
         y1 = (0.29 * x1) + (0.29 * x2) + (0.14 * x3) + (0.14 * x4) + (0.14 * x5)  
-        y2 = (0.14 * x1) + (0.14 * x2) + (0.44 * x3) + (0.14 * x4) + (0.44 * x5)  
-        y3 = (0.29 * x1) + (0.14 * x2) + (0.29 * x3) + (0.14 * x4) + (0.29 * x5)  
-        y4 = (0.14 * x1) + (0.14 * x2) + (0.29 * x3) + (0.29 * x4) + (0.29 * x5)  
+        y2 = (0.14 * x1) + (0.14 * x2) + (0.14* x3) + (0.14 * x4) + (0.44 * x5)  
+        y3 = (0.29 * x1) + (0.14 * x2) + (0.14 * x3) + (0.14 * x4) + (0.29* x5)  
+        y4 = (0.14 * x1) + (0.14 * x2) + (0.29 * x3) + (0.29 * x4) + (0.14 * x5)
 
         # Display the recommended subject
         # Rounding the totals to 2 decimal places
