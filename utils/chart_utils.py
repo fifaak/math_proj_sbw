@@ -48,7 +48,7 @@ def plot_equation(x1,x2,x3,x4,x5,y1,y2,y3,y4):
     st.markdown(f"""**y2 ({y2:.2f})** = 
     <span style='color: #FF5733;'>0.14 \\* คณิตศาสตร์ ({x1:.2f})</span> + 
     <span style='color: #33FF57;'>0.14 \\* วิทยาศาสตร์ ({x2:.2f})</span> + 
-    <span style='color: #3357FF;'>0.44 \\* ภาษาไทย ({x3:.2f})</span> + 
+    <span style='color: #3357FF;'>0.14 \\* ภาษาไทย ({x3:.2f})</span> + 
     <span style='color: #FF33A1;'>0.14 \\* สังคมศึกษา ({x4:.2f})</span> + 
     <span style='color: #FFD700;'>0.44 \\* ภาษาอังกฤษ ({x5:.2f})</span>""", unsafe_allow_html=True)
 
